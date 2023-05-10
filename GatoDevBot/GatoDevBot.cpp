@@ -20,8 +20,8 @@ int main()
 
     /* Handle slash command */
     bot.on_slashcommand([](const dpp::slashcommand_t& event) {
-         if (event.command.get_command_name() == "ping") {
-            event.reply("Pong!");
+         if (event.command.get_command_name() == "info") {
+            event.reply("Hola! Soy un bot de Discord programado en C++ por GatoDev. No puedo hacer mucho actualmente porque estoy siendo desarrollado pero espero poder servirte muy pronto :heart:");
         }
     });
 
@@ -29,7 +29,7 @@ int main()
     bot.on_ready([&bot](const dpp::ready_t& event) {
         /* Wrap command registration in run_once to make sure it doesnt run on every full reconnection */
         if (dpp::run_once<struct register_bot_commands>()) {
-            bot.global_command_create(dpp::slashcommand("ping", "Ping pong!", bot.me.id));
+            bot.global_command_create(dpp::slashcommand("info", "Informacion acerca del bot.", bot.me.id));
         }
     });
 
